@@ -296,9 +296,10 @@ const Compra = () => {
     {errores.aceptaPoliticas && <div className="text-danger">{errores.aceptaPoliticas}</div>}
 
     <ReCAPTCHA
-  sitekey="6Lf4Z-8qAAAAAPc7ZxeMxQPnIc_8IY6CJT4G7ehZ"  // 👈 Reemplázalo con tu clave pública
+  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
   onChange={(value) => setRecaptchaValue(value)}
 />
+
 {errores.recaptcha && <div className="text-danger">{errores.recaptcha}</div>}
 
 <button 

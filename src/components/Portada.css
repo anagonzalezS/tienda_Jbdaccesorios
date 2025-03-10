@@ -1,6 +1,6 @@
 /* Fondo de la sección hero */
 .hero {
-    background-image: url('img/fondo.png'); /* Asegúrate de que la ruta sea correcta */
+    background-image: url('/img/fondo.png'); /* Asegúrate de que la ruta sea correcta */
     background-size: cover;
     background-position: center;
     height: 100vh;

@@ -1,0 +1,245 @@
+.carrito-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 2000; /* Asegurar que el modal esté por encima del navbar */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .carrito-modal.open {
+    transform: translateX(0);
+  }
+  
+  /* Encabezado del carrito */
+  .carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .carrito-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .close-btn:hover {
+    color: red;
+  }
+  
+  /* Cuerpo del carrito */
+  .carrito-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
+  
+  /* Estilo de productos */
+  .product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .product-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .product-item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .product-price {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .remove-btn {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+  }
+  
+  .remove-btn:hover {
+    color: darkred;
+  }
+  
+  /* Mensaje de carrito vacío */
+  .carrito-vacio {
+    text-align: center;
+    color: #555;
+    margin-top: 30px;
+  }
+  
+  .icono-carrito-vacio {
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  /* Footer del carrito */
+  .carrito-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .checkout-btn {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checkout-btn:hover {
+    background-color: #218838;
+  }
+  .confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-btn, .cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  background-color: #ff0000;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #007bff;
+  color: white;
+}
+/* Estilo del modal de confirmación */
+.confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-modal-content {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 85%;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.confirm-btn, .cancel-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 48%;
+}
+
+.confirm-btn {
+  background-color: #ff4747;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #d93e3e;
+}
+
+.cancel-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #0062cc;
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+  .confirm-modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .confirm-btn, .cancel-btn {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+}

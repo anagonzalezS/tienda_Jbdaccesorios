@@ -1,0 +1,63 @@
+/* Footer.css */
+
+.footer {
+    background-color: #333; /* Fondo gris oscuro */
+    color: #ddd; /* Texto gris claro */
+    padding: 20px 0;
+    font-size: 0.9rem;
+  }
+  
+  .footer-title {
+    color: #fff; /* Títulos en blanco */
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .footer a {
+    color: #ddd; /* Enlaces en gris claro */
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    color: #fff; /* Enlaces blancos al pasar el mouse */
+  }
+  
+  .social-icons a {
+    margin-right: 15px;
+    color: #ddd; /* Color gris claro para los íconos sociales */
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #f4c10f; /* Color dorado al hacer hover */
+  }
+  
+  .list-unstyled i {
+    margin-right: 8px;
+  }
+  
+  .footer-link {
+    color: #ddd;
+    margin: 0 10px;
+  }
+  
+  .footer-link:hover {
+    color: #f4c10f; /* Cambio de color en hover */
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 576px) {
+    .footer {
+      padding: 15px 0; /* Reduce el espaciado en pantallas pequeñas */
+    }
+    
+    .footer-title {
+      font-size: 1.2rem; /* Aumentar tamaño del título en pantallas pequeñas */
+    }
+    
+    .social-icons a {
+      margin-right: 10px; /* Espaciado más pequeño para íconos en móviles */
+    }
+  }
+  

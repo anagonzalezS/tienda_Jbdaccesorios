@@ -1,0 +1,71 @@
+/* Estilo para las tarjetas de productos */
+.producto-card {
+  width: 100%;
+  max-width: 220px; /* Tamaño más pequeño para las tarjetas */
+  min-height: 350px; /* Altura ajustada para no ser tan grande */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin: 10px; /* Espacio entre tarjetas */
+  overflow: hidden; /* Asegura que las imágenes no sobresalgan */
+}
+
+.producto-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Efecto más suave al pasar el mouse */
+}
+
+/* Imagen del producto */
+.producto-card img {
+  width: 100%;
+  height: 180px; /* Ajustamos la imagen a un tamaño más pequeño */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px; /* Separación de la imagen con el texto */
+}
+
+/* Nombre y precio del producto */
+.producto-card .producto-titulo {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px; /* Separación del precio */
+}
+
+.producto-card .producto-precio {
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Distribución en grid */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Espaciado entre las tarjetas */
+}
+
+/* Columnas responsivas */
+@media (min-width: 576px) {
+  .col-sm-4 {
+    flex: 1 1 calc(33.333% - 20px); /* Tres columnas en pantallas pequeñas */
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-3 {
+    flex: 1 1 calc(25% - 20px); /* Cuatro columnas en pantallas medianas */
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-2 {
+    flex: 1 1 calc(16.66% - 20px); /* Seis columnas en pantallas grandes */
+  }
+}

@@ -1,0 +1,141 @@
+/* Modal overlay - Fondo oscuro */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%; /* Responsive */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Botón de cerrar */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* Imagen del producto */
+.modal-imagen {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Selector de cantidad */
+.cantidad-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cantidad-selector button {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cantidad-selector button:hover {
+  background-color: #ddd;
+}
+
+.cantidad-selector span {
+  font-size: 22px;
+  font-weight: bold;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Botones de acción (Agregar y Pagar) */
+.modal-botones {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.btn-agregar,
+.btn-pagar {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  width: 48%;
+}
+
+.btn-agregar {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+
+.btn-pagar {
+  background-color: #007bff; /* Azul */
+  color: white;
+}
+
+.btn-agregar:hover,
+.btn-pagar:hover {
+  opacity: 0.8;
+}
+
+/* Responsividad */
+@media (max-width: 360px) {
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .cantidad-selector button {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .cantidad-selector span {
+    font-size: 20px;
+  }
+
+  .btn-agregar,
+  .btn-pagar {
+    font-size: 14px;
+  }
+}

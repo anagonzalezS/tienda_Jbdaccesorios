@@ -1,0 +1,41 @@
+.ubicacion-container {
+    padding: 20px;
+  }
+  
+  .ubicacion-container h3 {
+    margin-bottom: 20px;
+  }
+  
+  .ubicacion-container p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .ubicacion-container button {
+    margin-top: 20px;
+  }
+  .btn-sutil {
+    display: inline-block;
+    padding: 8px 10px; /* Tamaño del padding */
+    color: #191919; /* Color del texto oscuro */
+    background-color: #fff; /* Color de fondo blanco */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+    text-decoration: none; /* Sin subrayado */
+    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+    font-size: 14px; /* Tamaño de fuente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 150px; /* Establecer un ancho máximo */
+
+
+}
+  
+  .btn-sutil:hover {
+    background-color: #f8f8f8; /* Fondo más claro al pasar el mouse */
+    border-color: #bbb; /* Borde más oscuro al pasar el mouse */
+  }
+  
+  
+  

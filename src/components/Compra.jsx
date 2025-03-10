@@ -25,7 +25,7 @@ const Compra = () => {
         currency_id: "ARS", // Moneda en Argentina
       }));
   
-      const response = await axios.post("http://localhost:3000/create_preference", {
+      const response = await axios.post("https://jbdaccesorios-backend-tienda.vercel.app/create_preference", {
         items, // Envía el array de productos
       });
   

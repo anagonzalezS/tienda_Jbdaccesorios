@@ -82,7 +82,63 @@
   transform: rotate(180deg); /* Flecha hacia abajo */
 }
 
-/* Estilos responsivos */
+/* ✅ Botón "Agregar al carrito" */
+.boton-agregar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content; /* Solo ocupa el tamaño del texto */
+  max-width: 140px; /* Evita que se expanda demasiado */
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #198754; /* Verde elegante */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px; /* Reduce el tamaño del texto */
+  padding: 4px 8px; /* Reduce el padding */
+  max-width: 120px; /* Limita el ancho */
+}
+
+.boton-agregar:hover {
+  background-color: #145c38; /* Un poco más oscuro al pasar el mouse */
+}
+
+/* ✅ Ajuste especial para móviles */
+@media (max-width: 576px) {
+  .producto-card {
+    max-width: 180px; /* Ajusta el ancho */
+    min-height: 220px; /* Reduce la altura */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .producto-card img {
+    height: 120px; /* Reduce la imagen */
+    border-radius: 5px;
+  }
+
+  .producto-card .producto-titulo {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .producto-card .producto-precio {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  
+}
+
+/* Otras configuraciones responsivas */
 @media (min-width: 576px) {
   .col-sm-4 {
     flex: 1 1 calc(33.333% - 20px);
@@ -100,10 +156,25 @@
     flex: 1 1 calc(16.66% - 20px);
   }
 }
-
 @media (max-width: 576px) {
-  .btn-ver-mas {
-    font-size: 14px; /* Reduce un poco el tamaño del texto */
-    padding: 8px 15px; /* Hace el botón un poco más compacto */
+  @media (max-width: 576px) {
+    .boton-agregar {
+      width: auto; /* Se adapta mejor al texto */
+      min-width: unset; /* Permite que el ancho sea flexible */
+      max-width: 120px; /* Limita su tamaño en móviles */
+      padding: 4px 10px; /* Reduce el padding */
+      font-size: 12px; /* Hace el texto más compacto */
+      border-radius: 4px; /* Forma más cuadrada */
+    }
+  }
+}
+.btn-agregar-carrito {
+  font-size: 13px; /* Reduce el tamaño del texto */
+  padding: 6px 12px; /* Reduce el espacio dentro del botón */
+}
+@media (max-width: 576px) {
+  .btn-agregar-carrito {
+    font-size: 11px; /* Aún más compacto en móviles */
+    padding: 5px 11px; /* Ajusta el espacio interior */
   }
 }

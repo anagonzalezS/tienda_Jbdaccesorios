@@ -22,13 +22,13 @@ const Modal = ({ producto, onClose, onAgregarAlCarrito, onCarritoClick }) => {
   };
 
   const pagarAhora = () => {
+    const total = producto.precio * cantidad; // Calcular el total del producto seleccionado
     navigate(
-      `/compra?nombre=${encodeURIComponent(producto.nombre)}&precio=${producto.precio}&imagen=${encodeURIComponent(
-        producto.imagen
-      )}&cantidad=${cantidad}`
+      `/compra?productos=${encodeURIComponent(
+        JSON.stringify([{ ...producto, cantidad }])
+      )}&total=${total}` // Pasar productos y total a la URL
     );
   };
-  
 
   // Evitar el scroll en el fondo cuando el modal está abierto
   useEffect(() => {
@@ -49,7 +49,12 @@ const Modal = ({ producto, onClose, onAgregarAlCarrito, onCarritoClick }) => {
           X
         </button>
         <h2>{producto.nombre}</h2>
-        <img src={producto.imagen} alt={producto.nombre} className="modal-imagen" loading="lazy" />
+        <img
+          src={producto.imagen}
+          alt={producto.nombre}
+          className="modal-imagen"
+          loading="lazy"
+        />
         <p>{producto.descripcion}</p>
         <p>
           <strong>Precio:</strong> ${producto.precio}

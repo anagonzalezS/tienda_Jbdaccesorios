@@ -1,54 +1,146 @@
+/* Estilos generales para la página de compra */
 .summary-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-bottom: 2rem; /* Espacio debajo */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 2rem; /* Espacio debajo */
+}
+
+.summary {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 20px;
+}
+
+.summary h5 {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.summary table {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.summary table th {
+  background-color: #f1f1f1;
+}
+
+.summary p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+  /* Cambiar el orden de los elementos en pantallas pequeñas */
+  .row.d-flex.flex-row-reverse {
+      flex-direction: column !important; /* El carrito va arriba o abajo según lo desees */
   }
-  
-  .summary {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .summary h5 {
-    font-size: 1.25rem;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  .summary table {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  .summary table th {
-    background-color: #f1f1f1;
-  }
-  
-  .summary p {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  @media (max-width: 768px) {
-    .row.d-flex.flex-row-reverse {
-      flex-direction: column-reverse !important; /* En móvil, el carrito va abajo */
-    }
-  
-    .col-md-6 {
+
+  /* Asegurarse de que las columnas ocupen el 100% en pantallas pequeñas */
+  .col-md-6 {
       width: 100%;
-    }
-  
-    .summary {
-      text-align: center;
-    }
-  
-    .summary table {
-      font-size: 14px;
-    }
+      padding: 10px; /* Espacio adicional en pantallas pequeñas */
   }
-  
+
+  /* Estilizar la tabla en el carrito para que sea más legible en pantallas pequeñas */
+  .summary table {
+      font-size: 14px;
+  }
+
+  /* Hacer que el texto del carrito esté centrado en móviles */
+  .summary {
+      text-align: center;
+  }
+
+  /* Mejorar la legibilidad de los formularios */
+  .form-control {
+      font-size: 14px; /* Asegurarse de que los campos no sean demasiado grandes */
+  }
+
+  /* Ajustar el tamaño del botón de compra */
+  .btn.btn-primary.w-100 {
+      font-size: 14px;
+  }
+
+  /* Ajustes para el carrito en pantallas pequeñas */
+  .summary h5 {
+      font-size: 1.1rem;
+  }
+
+  .summary table th,
+  .summary table td {
+      font-size: 12px;
+  }
+}
+
+/* Estilos adicionales para la compra */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.card {
+  border: none;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.alert {
+  font-size: 0.9rem;
+}
+
+.form-check {
+  margin-bottom: 10px;
+}
+
+.form-check-input {
+  margin-top: 3px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+/* Estilos del formulario */
+form {
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+button[type="button"] {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+/* Estilos de ReCAPTCHA */
+.recaptcha-container {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+/* Estilos del footer */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ccc;
+}

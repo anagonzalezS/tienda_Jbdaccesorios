@@ -1,6 +1,7 @@
-.ubicacion-container {
-    padding: 20px;
-  }
+.ubicacion-container h3 {
+  margin-bottom: 20px;
+  display: block; /* Asegura que el título ocupe todo el ancho disponible */
+}
   
   .ubicacion-container h3 {
     margin-bottom: 20px;
@@ -37,5 +38,32 @@
     border-color: #bbb; /* Borde más oscuro al pasar el mouse */
   }
   
+  @media (max-width: 767px) {
+    .ubicacion-container h3 {
+      text-align: center; /* Centra el título en pantallas pequeñas */
+    }
+  }  
   
+
+  .ubicacion-container .col-md-6 {
+    margin-bottom: 20px; /* Agrega espacio entre las columnas en pantallas pequeñas */
+  }
+  .ubicacion-container h3 {
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 767px) {
+    /* Cambiar el orden de las columnas para pantallas pequeñas */
+    .ubicacion-container .col-md-6 {
+      order: 2; /* Mueve el mapa después del título en pantallas pequeñas */
+    }
+  
+    .ubicacion-container .col-md-6:first-child {
+      order: 1; /* Asegura que el título se quede primero en pantallas pequeñas */
+    }
+    
+    .ubicacion-container iframe {
+      margin-top: 20px; /* Agrega un margen superior para el mapa en pantallas pequeñas */
+    }
+  }
   

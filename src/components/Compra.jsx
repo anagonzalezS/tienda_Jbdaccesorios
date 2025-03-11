@@ -21,6 +21,8 @@ const total = Number(queryParams.get("total")) || 0;
 
   const [preferenceId, setPreferenceId] = useState(null);
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     initMercadoPago(import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY);
   }, []);
   

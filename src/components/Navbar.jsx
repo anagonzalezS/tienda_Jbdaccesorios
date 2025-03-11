@@ -3,7 +3,7 @@ import { Navbar, Container, Nav, Badge } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 import CarritoModal from "./CarritoModal";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./navbar.css";
+import "./Navbar.css";
 
 const NavBar = ({ carrito, setCarrito }) => {
   const [showModal, setShowModal] = useState(false);

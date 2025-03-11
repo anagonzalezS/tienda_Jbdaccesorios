@@ -1,73 +1,82 @@
 import React from "react";
 import { FaTimes, FaTrash, FaMinus, FaPlus } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./CarritoModal.css";
 
 const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
   const navigate = useNavigate();
 
-  // Formatea el precio
-  const formatearPrecio = (precio) => new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS" }).format(precio);
+  const formatearPrecio = (precio) =>
+    new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS" }).format(precio);
 
-  // Total del carrito
   const total = carritoItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
-  // Actualizar cantidad de producto
-  const handleUpdateQuantity = (index, newCantidad) => {
-    const newCarrito = [...carritoItems];
-    newCarrito[index].cantidad = newCantidad;
-    setCarrito(newCarrito);  // Actualiza el carrito con la nueva cantidad
+  const actualizarCantidad = (producto, cantidad) => {
+    if (cantidad <= 0) return;
+    const carritoActualizado = carritoItems.map((item) =>
+      item.id === producto.id ? { ...item, cantidad } : item
+    );
+    setCarrito(carritoActualizado);
   };
 
-  // Eliminar producto del carrito
-  const handleRemoveItem = (index) => {
-    const newCarrito = carritoItems.filter((_, i) => i !== index); // Filtra el producto por su índice
-    setCarrito(newCarrito);  // Actualiza el carrito eliminando el producto
+  const eliminarProducto = (producto) => {
+    const carritoFiltrado = carritoItems.filter((item) => item.id !== producto.id);
+    setCarrito(carritoFiltrado);
   };
 
-  // Redirige al formulario de compra con los productos del carrito en formato JSON
-  const pagarAhora = () => {
-    const carritoJSON = JSON.stringify(carritoItems); // Convierte el carrito a un string JSON
-    navigate(`/compra?productos=${encodeURIComponent(carritoJSON)}&total=${total}`);
+  const irAPagar = () => {
+    const productosStr = encodeURIComponent(JSON.stringify(carritoItems));
+    const total = carritoItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+    navigate(`/compra?productos=${productosStr}&total=${total}`);
   };
+  
+  
 
   return (
     <div className={`carrito-modal ${showModal ? "open" : ""}`}>
       <div className="carrito-header">
-        <h1>Mi Carrito</h1>
-        <button className="close-btn" onClick={handleClose}><FaTimes size={20} /></button> {/* Cierra el modal */}
+        <h1>Tu carrito</h1>
+        <button className="close-btn" onClick={handleClose}>
+          <FaTimes />
+        </button>
       </div>
+
       <div className="carrito-body">
         {carritoItems.length === 0 ? (
-          <p className="carrito-vacio">Tu carrito está vacío</p>
+          <p className="carrito-vacio">No hay productos en el carrito.</p>
         ) : (
-          carritoItems.map((item, index) => (
-            <div key={item.id} className="product-item">
-              <img src={item.imagen} alt={item.nombre} className="product-image" />
+          carritoItems.map((producto) => (
+            <div key={producto.id} className="product-item">
+              <img src={producto.imagen} alt={producto.nombre} />
               <div className="product-item-details">
-                <span className="product-name">{item.nombre}</span>
-                <span className="product-price">{formatearPrecio(item.precio)}</span>
-                <div className="cantidad-selector">
-                  <button onClick={() => handleUpdateQuantity(index, item.cantidad - 1)} disabled={item.cantidad <= 1}><FaMinus /></button>
-                  <span>{item.cantidad}</span>
-                  <button onClick={() => handleUpdateQuantity(index, item.cantidad + 1)}><FaPlus /></button>
+                <span className="product-name">{producto.nombre}</span>
+                <span className="product-price">{formatearPrecio(producto.precio)}</span>
+                <div className="cantidad-control">
+                  <button onClick={() => actualizarCantidad(producto, producto.cantidad - 1)}>
+                    <FaMinus />
+                  </button>
+                  <span>{producto.cantidad}</span>
+                  <button onClick={() => actualizarCantidad(producto, producto.cantidad + 1)}>
+                    <FaPlus />
+                  </button>
                 </div>
               </div>
-              <button className="remove-btn" onClick={() => handleRemoveItem(index)}>
-                <FaTrash size={20} />
+              <button className="remove-btn" onClick={() => eliminarProducto(producto)}>
+                <FaTrash />
               </button>
             </div>
           ))
         )}
       </div>
-      {carritoItems.length > 0 && (
-        <div className="carrito-footer">
-          <span className="total">Total: {formatearPrecio(total)}</span>
-          <button className="checkout-btn" onClick={pagarAhora}>
-            Finalizar compra
-          </button>
-        </div>
-      )}
+
+      <div className="carrito-footer">
+        <p>
+          <strong>Total: {formatearPrecio(total)}</strong>
+        </p>
+        <button className="checkout-btn" onClick={irAPagar}>
+          pagar total
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,11 @@
-/* Modal overlay - Fondo oscuro */
+/* Fondo oscuro con opacidad */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,12 +20,14 @@
   border-radius: 8px;
   padding: 20px;
   max-width: 500px;
-  width: 100%; /* Responsive */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  max-height: 90vh; /* Evita que el modal se desborde en pantallas pequeñas */
+  overflow-y: auto; /* Permite desplazamiento dentro del modal */
 }
 
 /* Botón de cerrar */
@@ -103,12 +105,12 @@
 }
 
 .btn-agregar {
-  background-color: #28a745; /* Verde */
+  background-color: #28a745;
   color: white;
 }
 
 .btn-pagar {
-  background-color: #007bff; /* Azul */
+  background-color: #007bff;
   color: white;
 }
 
@@ -117,25 +119,41 @@
   opacity: 0.8;
 }
 
-/* Responsividad */
-@media (max-width: 360px) {
+/* ✅ Responsividad */
+@media (max-width: 480px) {
   .modal-content {
-    width: 90%;
+    width: 95%;
+    max-width: 350px;
     padding: 15px;
   }
 
+  .modal-imagen {
+    max-height: 180px;
+  }
+
+  .cantidad-selector {
+    gap: 10px;
+  }
+
   .cantidad-selector button {
-    width: 35px;
-    height: 35px;
-    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
   }
 
   .cantidad-selector span {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .btn-agregar,
   .btn-pagar {
     font-size: 14px;
+    padding: 10px;
+  }
+
+  .modal-close {
+    font-size: 18px;
+    top: 5px;
+    right: 5px;
   }
 }

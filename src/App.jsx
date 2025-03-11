@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importar React Router
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import Navbar from './components/Navbar.jsx';
 import Portada from './components/Portada.jsx';
 import Productos from './components/Productos.jsx';
@@ -38,7 +40,10 @@ function App() {
       }
       return [...prevCarrito, { ...producto, cantidad }];
     });
+  
+    setShowCarritoModal(true); // 🔥 Esto abre automáticamente el carrito modal
   };
+  
 
   // Función para eliminar productos del carrito
   const eliminarDelCarrito = (idProducto) => {

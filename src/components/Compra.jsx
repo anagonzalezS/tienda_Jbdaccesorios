@@ -10,46 +10,54 @@ import ReCAPTCHA from "react-google-recaptcha";
 const Compra = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
-
+  const handleRecaptcha = (value) => {
+    setRecaptchaValue(value);
+  };
+  
   const queryParams = new URLSearchParams(location.search);
+const productos = JSON.parse(queryParams.get("productos")) || [];
+const total = Number(queryParams.get("total")) || 0;
+
+
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago(process.env.REACT_APP_MERCADOPAGO_PUBLIC_KEY);
+  useEffect(() => {
+    initMercadoPago(import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY);
+  }, []);
+  
+  
+
 
   const createPreference = async () => {
-    try {
-      // Asegura que `productos` tiene la estructura correcta
-      const items = productos.map((producto) => ({
-        title: producto.nombre, // Usa el nombre del producto
-        quantity: Number(producto.cantidad), // Convierte a número
-        unit_price: Number(producto.precio), // Convierte a número
-        currency_id: "ARS", // Moneda en Argentina
-      }));
-  
-      const response = await axios.post("https://jbdaccesorios-backend-tienda.vercel.app/create_preference", {
-        items, // Envía el array de productos
-      });
-  
-      const { id } = response.data;
-      return id;
-    } catch (error) {
-      console.error("Error al crear la preferencia:", error);
-    }
-  };
-  const handleBuy = async () => {
-    setLoading(true); // Iniciar la carga
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
-    }
-    setLoading(false); // Finalizar la carga
-  };
-  
+  try {
+    const items = productos.map((producto) => ({
+      title: producto.nombre,
+      quantity: Number(producto.cantidad),
+      unit_price: Number(producto.precio),
+      currency_id: "ARS",
+    }));
 
-  const productos = JSON.parse(queryParams.get("productos")) || [];
-  const total = queryParams.get("total");
-  const telefonoVendedor = "1122334455";
-  const direccionLocal = "Av. Ejemplo 1234, Ciudad, Provincia";
-  const horarioAtencion = "Lunes a Sábado de 9:00 a 18:00 hs";
+    const response = await axios.post("http://localhost:3000/create_preference", { items });
+
+    const { id } = response.data;
+    return id;
+  } catch (error) {
+    console.error("Error al crear la preferencia:", error);
+  }
+};
+const handleBuy = async () => {
+  if (!validarFormulario()) return;
+  setLoading(true);
+  const id = await createPreference();
+  if (id) {
+    setPreferenceId(id);
+    window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${id}`;
+  }
+  setLoading(false);
+};
+
+  const telefonoVendedor = "1136545084";
+  const direccionLocal = "Mitre 2309, CABA, Barrio once";
+  const horarioAtencion = "Lunes a Viernes de 9:00 a 17:00.";
   const [recaptchaValue, setRecaptchaValue] = useState(null);
 
   const [formulario, setFormulario] = useState({
@@ -81,16 +89,15 @@ const Compra = () => {
   
 
   const handleChange = (e) => {
-    setFormulario({ ...formulario, [e.target.name]: e.target.value });
-
-    if (e.target.name === "metodoPago" && e.target.value === "mercadopago") {
+    const { name, value, type, checked } = e.target;
+    setFormulario((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+    if (name === "metodoPago" && value === "mercadopago") {
       setMetodoPagoSeleccionado(true);
     } else {
       setMetodoPagoSeleccionado(false);
-    }
-
-    if (e.target.name === "aceptaPoliticas") {
-      setFormulario({ ...formulario, aceptaPoliticas: e.target.checked });
     }
   };
 
@@ -186,7 +193,6 @@ const Compra = () => {
 
 
 {/* 📝 Formulario de datos personales (Izquierda) */}
-{/* 📝 Formulario de datos personales (Izquierda) */}
 <div className="col-md-6">
   <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
     <h5>Datos Personales</h5>
@@ -254,7 +260,7 @@ const Compra = () => {
 
     {formulario.metodoEntrega === "envio" && (
       <div className="alert alert-info mt-3">
-        Tu pedido será enviado a la dirección proporcionada. El costo de envío se calculará según tu ubicación.
+        La entrega será coordinado con el vendedor Jonatan Sanchez 1136545084.
       </div>
     )}
 
@@ -296,9 +302,11 @@ const Compra = () => {
     {errores.aceptaPoliticas && <div className="text-danger">{errores.aceptaPoliticas}</div>}
 
     <ReCAPTCHA
-  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-  onChange={(value) => setRecaptchaValue(value)}
+  sitekey="6Lf4Z-8qAAAAAPc7ZxeMxQPnIc_8IY6CJT4G7ehZ"
+  onChange={handleRecaptcha}
 />
+
+
 
 {errores.recaptcha && <div className="text-danger">{errores.recaptcha}</div>}
 
@@ -318,14 +326,11 @@ const Compra = () => {
 {preferenceId && <Wallet initialization={{ preferenceId }} customization={{ texts: { valueProp: 'smart_option' } }} locale="es-AR" />}
 
 
-
   </form>
-</div>
-</div>
-</div>
-
-
-
+  </div>
+      </div>
+      <Footer />
+    </div>
   );
 };
 

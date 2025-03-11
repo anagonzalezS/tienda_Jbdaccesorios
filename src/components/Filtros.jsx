@@ -6,7 +6,7 @@ const Filtros = ({ productos, setProductosFiltrados }) => {
   const [categoria, setCategoria] = useState('all');
 
   const categorias = [
-    { value: 'all', label: 'Categorías' },
+    { value: 'all', label: 'Todas las categorías' },
     { value: 'Bicicletas', label: 'Bicicletas' },
     { value: 'Auto', label: 'Auto' },
     { value: 'Equipo de mate', label: 'Equipo de mate' },
@@ -33,27 +33,25 @@ const Filtros = ({ productos, setProductosFiltrados }) => {
 
   return (
     <aside className="sidebar">
-      <h2>Filtros</h2>
+      <div className="filtros-container">
+        <div className="filtro-item">
+          <label htmlFor="categoria">Categoría:</label>
+          <select id="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+            {categorias.map((cat) => (
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      {/* Filtro de categoría */}
-      <div className="filtro-item">
-        <label htmlFor="categoria">Categoría:</label>
-        <select id="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-          {categorias.map((cat) => (
-            <option key={cat.value} value={cat.value}>
-              {cat.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Ordenar por precio */}
-      <div className="filtro-item">
-        <label htmlFor="orden">Ordenar por precio:</label>
-        <select id="orden" value={orden} onChange={(e) => setOrden(e.target.value)}>
-          <option value="asc">Menor a Mayor</option>
-          <option value="desc">Mayor a Menor</option>
-        </select>
+        <div className="filtro-item">
+          <label htmlFor="orden">Ordenar por precio:</label>
+          <select id="orden" value={orden} onChange={(e) => setOrden(e.target.value)}>
+            <option value="asc">Menor a Mayor</option>
+            <option value="desc">Mayor a Menor</option>
+          </select>
+        </div>
       </div>
     </aside>
   );

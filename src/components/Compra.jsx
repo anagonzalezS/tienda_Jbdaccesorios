@@ -225,23 +225,22 @@ const handleBuy = async () => {
       <input type="text" className="form-control" name="dni" value={formulario.dni} onChange={handleChange} required />
     </div>
 
-    
-    <div className="form-check">
-      <input type="radio" className="form-check-input" id="mercadopago" name="metodoPago" value="mercadopago" checked={formulario.metodoPago === "mercadopago"} onChange={handleChange} />
-      <label className="form-check-label" htmlFor="mercadopago">
-        <img src="/img/mercadopago-banner.png" alt="Mercado Pago" style={{ width: "32px" }} />
-        Mercado Pago
-      </label>
-    </div>
+<div className="form-check mb-3 d-flex align-items-center">
+  <input type="radio" className="form-check-input me-2" id="mercadopago" name="metodoPago" value="mercadopago" checked={formulario.metodoPago === "mercadopago"} onChange={handleChange} />
+  <label className="form-check-label d-flex align-items-center" htmlFor="mercadopago">
+    <img src="/img/mercadopago-banner.png" alt="Mercado Pago" style={{ width: "40px", height: "auto", marginRight: "8px" }} />
+    Mercado Pago
+  </label>
+</div>
 
-    {formulario.metodoPago === "mercadopago" && (
-      <div className="alert alert-info mt-3">
-        Una vez confirmada la orden serás redirigido al sitio de Mercado Pago, donde podrás confirmar el pago. 
-        Recordá que si cerrás la ventana se perderá tu orden y los productos de tu carrito.
-      </div>
-    )}
+{formulario.metodoPago === "mercadopago" && (
+  <div className="alert alert-info mt-2">
+    Serás redirigido a Mercado Pago para completar tu compra. Si cierras la ventana, la orden se perderá.
+  </div>
+)}
 
-    {errores.metodoPago && <div className="text-danger">{errores.metodoPago}</div>}
+{errores.metodoPago && <div className="text-danger">{errores.metodoPago}</div>}
+
 
 {/* 🚚 Método de Entrega */}
 <h5>Método de Entrega</h5>

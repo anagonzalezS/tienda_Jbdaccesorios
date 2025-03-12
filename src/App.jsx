@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importar React Router
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Navbar from './components/Navbar.jsx';
@@ -7,68 +7,61 @@ import Portada from './components/Portada.jsx';
 import Productos from './components/Productos.jsx';
 import Ubicacion from './components/Ubicacion.jsx';
 import Footer from './components/Footer.jsx';
-import productos from './data/productos';
-import Compra from './components/Compra';  // Importamos el formulario de compra
-import CarritoModal from './components/CarritoModal'; // Importamos el modal del carrito
+import Compra from './components/Compra';
+import CarritoModal from './components/CarritoModal';
+import Filtros from './components/Filtros';
+import productos from './data/productos.jsx';
+
+const categorias = [
+  { value: 'all', label: 'Todas las categorías' },
+  { value: 'Bicicletas', label: 'Bicicletas' },
+  { value: 'Auto', label: 'Auto' },
+  { value: 'Equipo de mate', label: 'Equipo de mate' },
+  { value: 'Moto', label: 'Moto' },
+  { value: 'Herramientas', label: 'Herramientas' },
+  { value: 'Iluminación', label: 'Iluminación' },
+  { value: 'Seguridad', label: 'Seguridad' },
+  { value: 'Camping', label: 'Camping' },
+  { value: 'Accesorios', label: 'Accesorios' },
+  { value: 'Audio', label: 'Audio' },
+];
 
 function App() {
   const [productosList, setProductosList] = useState(productos);
-  const [carrito, setCarrito] = useState([]);  // Inicializamos carrito como un array vacío
-  const [showCarritoModal, setShowCarritoModal] = useState(false); // Estado para controlar la visibilidad del modal
+  const [carrito, setCarrito] = useState([]);
+  const [showCarritoModal, setShowCarritoModal] = useState(false);
+  const [isFiltroLateralOpen, setIsFiltroLateralOpen] = useState(false);
 
-  // Cargar el carrito desde localStorage al montar el componente
-  useEffect(() => {
-    const carritoGuardado = localStorage.getItem("carrito");
-    if (carritoGuardado) {
-      setCarrito(JSON.parse(carritoGuardado));
+  const filterProductos = (categoria) => {
+    if (categoria) {
+      const filtered = productos.filter(producto => producto.categoria === categoria);
+      setProductosList(filtered);
+    } else {
+      setProductosList(productos);
     }
-  }, []);
-
-  // Guardar en localStorage cada vez que cambia el carrito
-  useEffect(() => {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }, [carrito]);
-
-  // Función para agregar productos al carrito
-  const agregarAlCarrito = (producto, cantidad) => {
-    setCarrito((prevCarrito) => {
-      const existeProducto = prevCarrito.find((item) => item.id === producto.id);
-      if (existeProducto) {
-        return prevCarrito.map((item) =>
-          item.id === producto.id ? { ...item, cantidad: item.cantidad + cantidad } : item
-        );
-      }
-      return [...prevCarrito, { ...producto, cantidad }];
-    });
-  
-    setShowCarritoModal(true); // 🔥 Esto abre automáticamente el carrito modal
-  };
-  
-
-  // Función para eliminar productos del carrito
-  const eliminarDelCarrito = (idProducto) => {
-    setCarrito(carrito.filter(producto => producto.id !== idProducto));
   };
 
-  // Función para abrir el modal del carrito
-  const onCarritoClick = () => {
-    setShowCarritoModal(true);
+  const toggleFiltroLateral = () => {
+    setIsFiltroLateralOpen(!isFiltroLateralOpen);
   };
 
   return (
     <Router>
       <div>
-        <Navbar carrito={carrito} onCarritoClick={onCarritoClick} />
-
-        {/* Modal del carrito */}
-        <CarritoModal 
+        <Navbar carrito={carrito} onCarritoClick={() => setShowCarritoModal(true)} onToggleFiltroLateral={toggleFiltroLateral} />
+        
+        <CarritoModal
           showModal={showCarritoModal}
-          handleClose={() => setShowCarritoModal(false)} 
+          handleClose={() => setShowCarritoModal(false)}
           carritoItems={carrito}
           setCarrito={setCarrito}
         />
 
-        {/* Definir las rutas */}
+        {/* Barra lateral de filtros */}
+        <div className={`filtro-lateral-container ${isFiltroLateralOpen ? 'open' : ''}`}>
+          <Filtros categorias={categorias} onFilter={filterProductos} />
+        </div>
+
         <Routes>
           <Route path="/" element={
             <>
@@ -80,8 +73,10 @@ function App() {
                 <Productos 
                   productos={productosList} 
                   carrito={carrito}
-                  agregarAlCarrito={agregarAlCarrito}
-                  eliminarDelCarrito={eliminarDelCarrito}
+                  agregarAlCarrito={() => {}}
+                  eliminarDelCarrito={() => {}}
+                  onFilter={filterProductos} // Pasa la función de filtrado
+                  categorias={categorias}
                 />
               </section>
 
@@ -93,7 +88,6 @@ function App() {
             </>
           } />
 
-          {/* Ruta para la página del formulario de compra */}
           <Route path="/compra" element={<Compra carrito={carrito} />} />
         </Routes>
       </div>

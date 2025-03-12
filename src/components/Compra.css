@@ -35,7 +35,6 @@
   font-size: 1rem;
   font-weight: bold;
 }
-
 /* Ajustes específicos para dispositivos móviles */
 @media (max-width: 768px) {
   /* Cambiar el orden de los elementos en pantallas pequeñas */
@@ -143,4 +142,24 @@ footer {
   padding: 20px;
   background-color: #f9f9f9;
   border-top: 1px solid #ccc;
+}
+/* Asegurar buen espaciado en móviles */
+@media (max-width: 768px) {
+  .form-check {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-check-label {
+    font-size: 14px;
+  }
+
+  .form-check img {
+    width: 35px; /* Reducir tamaño de icono en pantallas pequeñas */
+  }
+
+  .alert {
+    font-size: 14px;
+    padding: 10px;
+  }
 }

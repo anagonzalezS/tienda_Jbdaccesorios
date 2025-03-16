@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, Badge } from "react-bootstrap";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaTruck } from "react-icons/fa";
 import CarritoModal from "./CarritoModal";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
@@ -8,70 +8,61 @@ import "./Navbar.css";
 const NavBar = ({ carrito, setCarrito }) => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
+  // Calcular cantidad total de productos en el carrito
   const cantidadTotal = carrito.reduce((total, item) => total + (item.cantidad || 0), 0);
 
-  const abrirCarrito = () => {
-    setShowModal(true); 
-  };
+  // Función para abrir el modal del carrito
+  const abrirCarrito = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
-  const handleCloseModal = () => {
-    setShowModal(false); 
-  };
-
-  const isCompraPage = location.pathname === "/compra"; // Verifica si estamos en la página de compra
+  // Comprobar si estamos en la página de compra
+  const isCompraPage = location.pathname === "/compra";
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="md">
+      {/* 🔹 Barra de Navegación (PRIMERA LÍNEA) */}
+      <Navbar bg="dark" variant="dark" expand="md" className="navbar">
         <Container>
-          <Navbar.Brand onClick={() => navigate("/")}>Accesorios JBD</Navbar.Brand>
+          <Navbar.Brand onClick={() => navigate("/")}>
+            <img src="/img/navbar2.png" alt="Logo" />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              {/* Condicional para ocultar los elementos en la página de compra */}
               {!isCompraPage && (
                 <>
-                  <Nav.Link href="#productos-list" className={isCompraPage ? "hidden-mobile" : ""}>Tienda</Nav.Link>
-                  <Nav.Link href="#ubicacion" className={isCompraPage ? "hidden-mobile" : ""}>Ubicación</Nav.Link>
-                  <Nav.Link href="#contacto" className={isCompraPage ? "hidden-mobile" : ""}>Contacto</Nav.Link>
+                  <Nav.Link href="#productos-list">Tienda</Nav.Link>
+                  <Nav.Link href="#ubicacion">Ubicación</Nav.Link>
+                  <Nav.Link href="#contacto">Contacto</Nav.Link>
+                  {/* Ícono del carrito con contador */}
+                  <Nav.Link onClick={abrirCarrito} style={{ position: "relative" }}>
+                    <FaShoppingCart size={24} />
+                    {cantidadTotal > 0 && (
+                      <Badge pill bg="danger" className="badge-carrito">
+                        {cantidadTotal}
+                      </Badge>
+                    )}
+                  </Nav.Link>
                 </>
-              )}
-
-              {/* Condicional para ocultar el carrito en la página de compra */}
-              {!isCompraPage && (
-                <Nav.Link onClick={abrirCarrito} style={{ position: "relative", cursor: "pointer" }}>
-                  <FaShoppingCart size={24} />
-                  {cantidadTotal > 0 && (
-                    <Badge
-                      pill
-                      bg="danger"
-                      style={{
-                        position: "absolute",
-                        top: "-5px",
-                        right: "-10px",
-                        fontSize: "0.75rem",
-                        padding: "5px 7px",
-                      }}
-                    >
-                      {cantidadTotal}
-                    </Badge>
-                  )}
-                </Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* Modal del carrito */}
-      <CarritoModal
-        showModal={showModal}
-        handleClose={handleCloseModal}
-        carritoItems={carrito}
-        setCarrito={setCarrito}
-      />
+      {/* 🔹 Banner de Información (SEGUNDA LÍNEA) */}
+      <div className="info-banner">
+        <FaTruck size={18} className="info-icon" />
+        <span className="info-text">Envíos a domicilio</span>
+        <span> | </span>
+        <span className="info-text">Pago seguro solo por Mercado Pago</span>
+        <img src="/img/mercadopago-logo.png" alt="Logo Mercado Pago" className="mercado-pago-logo" />
+      </div>
+
+      {/* 🔹 Modal del carrito */}
+      <CarritoModal showModal={showModal} handleClose={handleCloseModal} carritoItems={carrito} setCarrito={setCarrito} />
     </div>
   );
 };

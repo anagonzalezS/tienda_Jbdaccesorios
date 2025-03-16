@@ -9,9 +9,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
   padding: 10px;
   transition: opacity 0.3s ease;
+  z-index: 10000 !important; /* Más alto que el navbar y el banner */
+
 }
 
 /* Contenido del modal */
@@ -20,6 +21,8 @@
   border-radius: 8px;
   padding: 20px;
   max-width: 500px;
+  position: relative;
+  z-index: 10001; /* Un poco más alto que el overlay */
   width: 100%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -28,6 +31,9 @@
   gap: 20px;
   max-height: 90vh; /* Evita que el modal se desborde en pantallas pequeñas */
   overflow-y: auto; /* Permite desplazamiento dentro del modal */
+}
+body.modal-open {
+  overflow: hidden;
 }
 
 /* Botón de cerrar */

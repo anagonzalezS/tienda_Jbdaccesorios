@@ -1,70 +1,91 @@
-/* Ajustes para asegurar que el ícono del carrito sea visible en móviles */
-.navbar-dark .navbar-nav .nav-link .fa-shopping-cart {
-  font-size: 24px;
-  color: white; /* Asegúrate de que el ícono sea visible en la barra de navegación */
-}
 
-.navbar-dark .navbar-nav .nav-link .badge {
-  font-size: 12px; /* Ajusta el tamaño del número del carrito en pantallas pequeñas */
-  background-color: red;
-  position: absolute;
-  top: -5px;
-  right: -10px;
-}
 
-/* Ajustes para móviles, asegúrate de que el carrito siempre se vea en la parte superior */
-@media (max-width: 768px) {
-  .navbar-dark .navbar-nav .nav-link {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 
-  /* Asegura que el carrito sea visible */
-  .navbar-dark .navbar-nav .nav-link .fa-shopping-cart {
-    font-size: 28px; /* Hazlo un poco más grande para que sea más visible en móvil */
-  }
-
-  .navbar-collapse {
-    justify-content: flex-start; /* Alinea los elementos a la izquierda para móvil */
-  }
-
-  .navbar-collapse .nav-link {
-    font-size: 16px; /* Ajusta el tamaño de los links */
-  }
-
-  .navbar-toggle {
-    background-color: #333; /* Estilo de botón en móvil */
-  }
-
-  /* Para ocultar los elementos de la barra de navegación en la página de compra */
-  .navbar-dark .navbar-nav .nav-link.hidden-mobile {
-    display: none !important;
-  }
-}
-
-/* Modal del carrito */
-.carrito-modal {
+/* 🔹 BANNER DE INFORMACIÓN */
+.info-banner {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 350px;
-  height: 100vh;
-  background-color: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 2000;
-  display: none; /* Inicialmente oculto */
-  flex-direction: column;
-  padding: 20px;
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  left: 0;
+  width: 100%;
+  background-color: #222; /* Fondo oscuro */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Más alto que el navbar */
+  border-bottom: 2px solid #ffffff;
 }
 
-/* Al hacer clic en el carrito, muestra el modal */
-.carrito-modal.open {
-  display: flex;  /* Cambia a flex para mostrar el modal */
-  transform: translateX(0);  /* Aparece el modal cuando showModal es true */
+/* 🔹 Espaciado entre elementos dentro del banner */
+.info-banner span {
+  margin: 0 10px;
 }
-.navbar-brand {
-  cursor: pointer;
+
+/* 🔹 Icono de envío */
+.info-icon {
+  font-size: 18px;
+  margin-right: 8px;
 }
+
+/* 🔹 Logo de Mercado Pago */
+.mercado-pago-logo {
+  width: 40px;
+  height: auto;
+  margin-left: 8px;
+}
+
+/* 🔹 BARRA DE NAVEGACIÓN */
+.navbar {
+  position: fixed;
+  top: 40px; /* Justo debajo del info-banner */
+  left: 0;
+  width: 100%;
+  z-index: 2000; /* Menos que el modal */
+  
+  background-color: #000 !important;
+  padding: 10px 0;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* 🔹 Enlaces de navegación */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  color: #ffffff !important;
+  font-weight: bold;
+  padding: 10px 15px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffffff !important;
+}
+
+/* 🔹 Ajustes del logo */
+.navbar-brand img {
+  height: 60px;
+  width: auto;
+}
+
+/* 🔹 Ajustes responsivos */
+@media (max-width: 768px) {
+  .info-banner {
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
+  .navbar {
+    top: 35px; /* Ajuste en móviles */
+    padding: 8px 0;
+  }
+}
+/* Ajusta el tamaño del logo en el navbar */
+.navbar-logo img {
+  width: 120px; /* Tamaño fijo */
+  height: auto;
+  max-height: 60px; /* Máximo para evitar que se agrande */
+  object-fit: contain;
+}
+
+

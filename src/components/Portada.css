@@ -3,16 +3,20 @@
   background-image: url('/img/banner.webp');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  min-height: 100vh; /* Mantiene el contenido flexible */
   width: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 10vw;
-  padding-top: 120px;
+  padding-left: 10vw; /* Mantén este padding para la alineación en pantallas grandes */
+  padding-top: 120px; /* Ajusta según el espacio que necesitas en la parte superior */
   color: white;
+  margin-top: -160px; /* Ajusta el valor según lo que necesites */
+
   z-index: 2;
+  box-sizing: border-box; /* Asegura que el padding no cause desbordamientos */
+  overflow: hidden; /* Evita el desbordamiento en pantallas grandes */
 }
 
 /* 🔹 Fondo oscuro */
@@ -27,26 +31,19 @@
   z-index: 1;
 }
 
-/* 🔹 Contenido bien posicionado */
+/* 🔹 Contenido principal */
 .main-content {
   position: relative;
   z-index: 2;
-  max-width: 40%;
+  max-width: 50%; /* Permite un contenido más amplio */
   text-align: left;
   padding: 20px;
 }
 
-/* 🔹 Botón y flecha alineados en la misma línea */
-.hero-action {
-  display: flex;
-  align-items: center; /* Alinea verticalmente */
-  gap: 15px; /* Espacio entre el botón y la flecha */
-}
-
 /* 🔹 Botón */
 button {
-  background-color: #ff5733;
-  color: white;
+  background-color: rgb(var(--color_48));
+  color: rgb(var(--color_50));
   font-size: 1.2rem;
   padding: 12px 24px;
   border: none;
@@ -55,18 +52,19 @@ button {
 }
 
 button:hover {
-  background-color: #d84315;
+  background-color: rgb(var(--color_51));
   transform: scale(1.05);
 }
 
-/* 🔹 Flecha ahora alineada con el botón */
-.arrow {
-  font-size: 1.8rem;
-  color: white;
-  animation: bounce 1.5s infinite;
+/* 🔹 Subtítulo */
+.hero-text {
+  font-size: 1.2rem;
+  font-weight: 300; /* Fino */
+  font-family: 'Anton', sans-serif;
+  color: rgb(var(--color_46)); /* Cambié el color de subtítulo */
+  text-align: left;
+  margin-top: 10px;
 }
-
-
 
 /* 🎯 Ajustes para móviles */
 @media (max-width: 767px) {
@@ -74,6 +72,7 @@ button:hover {
     justify-content: center;
     padding-left: 0;
     text-align: center;
+    padding-top: 80px;
   }
 
   .main-content {
@@ -81,12 +80,24 @@ button:hover {
     text-align: center;
   }
 
-  .hero-action {
-    justify-content: center;
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
   }
 }
-.arrow-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px; /* Espacio entre el botón y la flecha */
+/* Portada.css */
+.orange-text {
+  font: normal normal normal 78px/1.4em 'Anton', sans-serif;
+}
+/* Estilo para el botón */
+.transparent-button {
+  background-color: transparent; /* Fondo transparente */
+  border: 2px solid white; /* Borde blanco */
+  color: white; /* Texto blanco */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave para el color */
+}
+
+.transparent-button:hover {
+  background-color: white; /* Fondo blanco cuando el mouse pasa */
+  color: black; /* Cambiar el color del texto a negro */
 }

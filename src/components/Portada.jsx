@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { Button } from 'react-bootstrap';
-import { FaChevronDown } from 'react-icons/fa';
 import Productos from './Productos';
 import './Portada.css';
 
@@ -20,16 +19,9 @@ const Portada = ({ handleCategoriaChange }) => {
           <h1 className="display-4">
             <span className="orange-text">JBD Accesorios</span>
           </h1>
-          <p className="hero-text">Calidad y estilo en tus accesorios.</p>
-          <Button variant="light" onClick={irAProductos}>Ver Productos</Button>
-          <div className="arrow-container">
-          </div>
+          <p className="hero-text">Accesorios con estilo y calidad.</p> {/* Subtítulo más fino */}
+          <Button className="transparent-button" onClick={irAProductos}>Ver Productos</Button>
         </div>
-      </div>
-
-      {/* Sección de productos */}
-      <div ref={productosRef}>
-        <Productos />
       </div>
     </div>
   );

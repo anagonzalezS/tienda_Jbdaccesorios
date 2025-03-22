@@ -1,0 +1,77 @@
+/* 🔹 BANNER DE INFORMACIÓN */
+.info-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: red; /* Fondo rojo */
+  color: white;
+  text-align: center;
+  font-size: 14px; /* Tamaño del texto ajustado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  border-bottom: 2px solid white;
+  overflow: hidden;
+  min-height: 50px;
+  padding: 5px 0;
+}
+
+/* 🔹 ANIMACIÓN DE MARQUEE */
+.marquee {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marqueeAnimation 20s linear infinite; /* Cambié el tiempo de animación para movimiento fluido */
+  gap: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 🔹 ESTILO DEL TEXTO E ICONOS */
+.info-text {
+  font-weight: bold;
+  color: white;
+  font-size: 14px;  /* Aumenté el tamaño para mejorar la legibilidad */
+  font-family: Helvetica, Arial, sans-serif;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.info-icon {
+  color: white;
+  font-size: 20px;  /* Aumenté el tamaño de los iconos */
+  margin-right: 10px;
+}
+
+/* 🔹 ANIMACIÓN PARA EL MOVIMIENTO DEL TEXTO */
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(100%); /* Empieza fuera de la pantalla por la derecha */
+  }
+  100% {
+    transform: translateX(-100%); /* Mueve el texto fuera de la pantalla por la izquierda */
+  }
+}
+
+/* 🔹 RESPONDER A DISPOSITIVOS MÓVILES */
+@media (max-width: 768px) {
+  .info-banner {
+    font-size: 12px;
+    min-height: 40px;
+  }
+
+  .info-icon {
+    font-size: 16px;
+  }
+
+  .info-text {
+    font-size: 12px;
+  }
+}

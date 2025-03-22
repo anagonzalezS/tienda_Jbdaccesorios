@@ -1,42 +1,44 @@
 import React from "react";
-import { FaTimes, FaTrash, FaMinus, FaPlus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaTimes, FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import "./CarritoModal.css";
 
 const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Inicializar useNavigate
+  const total = carritoItems.reduce((acc, item) => {
+    const precio = parseFloat(item.precio) || 0;
+    const cantidad = parseInt(item.cantidad) || 1;
+    return acc + precio * cantidad;
+  }, 0);
 
-  const formatearPrecio = (precio) =>
-    new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS" }).format(precio);
+  const eliminarProducto = (id) => {
+    setCarrito(carritoItems.filter((item) => item.id !== id));
+  };
 
-  const total = carritoItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-
-  const actualizarCantidad = (producto, cantidad) => {
-    if (cantidad <= 0) return;
-    const carritoActualizado = carritoItems.map((item) =>
-      item.id === producto.id ? { ...item, cantidad } : item
+  const modificarCantidad = (id, nuevaCantidad) => {
+    if (nuevaCantidad < 1) return;
+    setCarrito(
+      carritoItems.map((item) =>
+        item.id === id ? { ...item, cantidad: nuevaCantidad } : item
+      )
     );
-    setCarrito(carritoActualizado);
   };
 
-  const eliminarProducto = (producto) => {
-    const carritoFiltrado = carritoItems.filter((item) => item.id !== producto.id);
-    setCarrito(carritoFiltrado);
+  const irACompra = () => {
+    // Redirige a la página de compra y pasa los productos y el total como parámetros de URL
+    navigate("/compra", {
+      state: {
+        productos: carritoItems,
+        total: total,
+      },
+    });
   };
-
-  const irAPagar = () => {
-    const productosStr = encodeURIComponent(JSON.stringify(carritoItems));
-    const total = carritoItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-    navigate(`/compra?productos=${productosStr}&total=${total}`);
-  };
-  
-  
 
   return (
     <div className={`carrito-modal ${showModal ? "open" : ""}`}>
       <div className="carrito-header">
-        <h1>Tu carrito</h1>
-        <button className="close-btn" onClick={handleClose}>
+        <span>Mi Carrito</span>
+        <button className="close-btn" onClick={handleClose} aria-label="Cerrar el carrito">
           <FaTimes />
         </button>
       </div>
@@ -47,21 +49,27 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
         ) : (
           carritoItems.map((producto) => (
             <div key={producto.id} className="product-item">
-              <img src={producto.imagen} alt={producto.nombre} />
-              <div className="product-item-details">
-                <span className="product-name">{producto.nombre}</span>
-                <span className="product-price">{formatearPrecio(producto.precio)}</span>
-                <div className="cantidad-control">
-                  <button onClick={() => actualizarCantidad(producto, producto.cantidad - 1)}>
-                    <FaMinus />
+              <img src={producto.imagen} alt={producto.nombre} className="carrito-product-image" />
+              <div className="product-details">
+                <span className="producto-nombre">{producto.nombre}</span>
+                <span className="producto-precio">
+                  {" $"}{new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2 }).format((parseFloat(producto.precio) || 0) * (producto.cantidad || 1))}
+                </span>
+                <div className="cantidad-selector">
+                  <button
+                    onClick={() => modificarCantidad(producto.id, producto.cantidad - 1)}
+                    disabled={producto.cantidad === 1}
+                    className={producto.cantidad === 1 ? "disabled" : ""}
+                  >
+                    -
                   </button>
                   <span>{producto.cantidad}</span>
-                  <button onClick={() => actualizarCantidad(producto, producto.cantidad + 1)}>
-                    <FaPlus />
+                  <button onClick={() => modificarCantidad(producto.id, producto.cantidad + 1)}>
+                    +
                   </button>
                 </div>
               </div>
-              <button className="remove-btn" onClick={() => eliminarProducto(producto)}>
+              <button className="btn-eliminar" onClick={() => eliminarProducto(producto.id)}>
                 <FaTrash />
               </button>
             </div>
@@ -71,11 +79,11 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
 
       <div className="carrito-footer">
         <p>
-          <strong>Total: {formatearPrecio(total)}</strong>
+          <strong>Total: ${" "}
+            {new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2 }).format(total)}
+          </strong>
         </p>
-        <button className="checkout-btn" onClick={irAPagar}>
-          pagar total
-        </button>
+        <button className="checkout-btn" onClick={irACompra}>Pagar total</button> {/* Redirige al formulario de compra */}
       </div>
     </div>
   );

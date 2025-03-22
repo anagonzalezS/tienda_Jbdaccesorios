@@ -1,180 +1,142 @@
-/* Estilo para las tarjetas de productos */
-.producto-card {
+.productos-container {
   width: 100%;
-  max-width: 220px;
-  min-height: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  margin: 10px;
-  overflow: hidden;
+  max-width: 1280px; /* Limita el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 20px 0;
 }
 
-.producto-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+/* Contenedor de cada producto */
+.producto-container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Asegura que las columnas se ajusten */
+  gap: 15px; /* Espacio entre las columnas */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+/* Tarjeta del producto */
+.producto-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  max-width: 240px; /* Limita el tamaño máximo de cada tarjeta */
+  margin: 10px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño de la tarjeta */
 }
 
 /* Imagen del producto */
-.producto-card img {
+.producto-imagen {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
+  max-width: 150px;
+  height: 150px;
+  object-fit: contain;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
-/* Nombre y precio del producto */
-.producto-card .producto-titulo {
+/* Información del producto */
+.producto-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Nombre del producto */
+.producto-titulo {
   font-size: 1rem;
   font-weight: bold;
-  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* Precio del producto */
+.producto-precio {
+  font-size: 1rem;
+  font-weight: normal;
   margin-bottom: 10px;
 }
 
-.producto-card .producto-precio {
-  font-size: 1.1rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Distribución en grid */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-/* Botón "Ver más" */
-.ver-mas-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.btn-ver-mas {
-  background-color: transparent;
-  color: #333;  /* Color negro sutil */
-  padding: 8px 15px;
-  font-size: 16px;
-  border: 1px solid #333; /* Borde gris oscuro */
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.btn-ver-mas:hover {
-  color: #555; /* Gris un poco más claro */
-  border-color: #555;
-}
-
-.flecha {
-  margin-left: 8px;
-  font-size: 14px;
-  transform: rotate(180deg); /* Flecha hacia abajo */
-}
-
-/* ✅ Botón "Agregar al carrito" */
+/* Botón "Agregar al carrito" */
 .boton-agregar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content; /* Solo ocupa el tamaño del texto */
-  max-width: 140px; /* Evita que se expanda demasiado */
+  width: 100%;
+  max-width: 180px;
+  padding: 10px;
   font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  background-color: #198754; /* Verde elegante */
+  background: black;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 12px; /* Reduce el tamaño del texto */
-  padding: 4px 8px; /* Reduce el padding */
-  max-width: 120px; /* Limita el ancho */
+  margin-top: auto; /* Mantiene alineación */
+  transition: background 0.3s ease;
 }
 
 .boton-agregar:hover {
-  background-color: #145c38; /* Un poco más oscuro al pasar el mouse */
+  background: gray;
 }
 
-/* ✅ Ajuste especial para móviles */
-@media (max-width: 576px) {
-  .producto-card {
-    max-width: 180px; /* Ajusta el ancho */
-    min-height: 220px; /* Reduce la altura */
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .producto-card img {
-    height: 120px; /* Reduce la imagen */
-    border-radius: 5px;
-  }
-
-  .producto-card .producto-titulo {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-
-  .producto-card .producto-precio {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-
-  
+/* Botón "Ver más" */
+.ver-mas-container {
+  margin-top: 20px;
+  text-align: center;
 }
 
-/* Otras configuraciones responsivas */
-@media (min-width: 576px) {
-  .col-sm-4 {
-    flex: 1 1 calc(33.333% - 20px);
+.boton-ver-mas {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-ver-mas:hover {
+  background: gray;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Cada producto ocupará el 50% del ancho disponible, es decir, dos productos por fila */
+  .producto-container {
+    width: 50%; /* 2 productos por fila */
+    padding: 5px;
+  }
+
+  /* Para asegurarte de que el título y el precio se ajusten bien en pantallas pequeñas */
+  .producto-titulo {
+    font-size: 14px;
+  }
+
+  .producto-precio {
+    font-size: 14px;
+  }
+
+  .boton-agregar {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .boton-ver-mas {
+    font-size: 12px;
+    padding: 8px 15px;
   }
 }
 
+/* Para pantallas grandes, el diseño se mantiene igual */
 @media (min-width: 768px) {
-  .col-md-3 {
-    flex: 1 1 calc(25% - 20px);
+  .producto-container {
+    width: 25%; /* 4 productos por fila en pantallas grandes */
   }
-}
 
-@media (min-width: 992px) {
-  .col-lg-2 {
-    flex: 1 1 calc(16.66% - 20px);
-  }
-}
-@media (max-width: 576px) {
-  @media (max-width: 576px) {
-    .boton-agregar {
-      width: auto; /* Se adapta mejor al texto */
-      min-width: unset; /* Permite que el ancho sea flexible */
-      max-width: 120px; /* Limita su tamaño en móviles */
-      padding: 4px 10px; /* Reduce el padding */
-      font-size: 12px; /* Hace el texto más compacto */
-      border-radius: 4px; /* Forma más cuadrada */
-    }
-  }
-}
-.btn-agregar-carrito {
-  font-size: 13px; /* Reduce el tamaño del texto */
-  padding: 6px 12px; /* Reduce el espacio dentro del botón */
-}
-@media (max-width: 576px) {
-  .btn-agregar-carrito {
-    font-size: 11px; /* Aún más compacto en móviles */
-    padding: 5px 11px; /* Ajusta el espacio interior */
+  .producto-card {
+    max-width: 240px;
   }
 }

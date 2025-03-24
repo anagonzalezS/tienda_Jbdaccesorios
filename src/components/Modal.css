@@ -1,11 +1,11 @@
-/* Overlay del fondo del modal */
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,19 +15,18 @@
 /* Contenido del modal */
 .modal-content {
   background: #fff;
-  width: 90%; /* Ajustar el ancho para dispositivos móviles */
-  max-width: 420px; /* Tamaño adecuado para móviles */
-  height: auto;
+  width: 90%;
+  max-width: 800px;
   padding: 20px;
   display: flex;
-  flex-direction: column; /* Apilar los elementos */
+  flex-direction: row;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
-/* Botón para cerrar */
+/* Botón de cierre */
 .modal-close {
   position: absolute;
   top: 10px;
@@ -37,48 +36,44 @@
   font-size: 30px;
   cursor: pointer;
   color: #000;
-  z-index: 10000;
 }
 
 /* Cuerpo del modal */
 .modal-body {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex-direction: row;
+  gap: 20px;
   width: 100%;
-  margin-top: 10px; /* Espaciado superior */
 }
 
-/* Estilo de la imagen */
+/* Imagen del producto */
 .modal-imagen {
-  width: 100%; /* Imagen ocupa todo el ancho disponible */
-  height: auto;
-  object-fit: cover; /* Aseguramos que la imagen se ajuste sin deformarse */
-  max-height: 250px; /* Limitar la altura en pantallas pequeñas */
+  width: 50%;
+  max-height: 350px;
+  object-fit: contain;
   border-radius: 10px;
 }
 
-/* Estilo de la información del producto */
+/* Información del producto */
 .modal-info {
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-  gap: 15px; /* Espaciado entre los elementos */
+  text-align: left;
+  padding: 0 20px;
 }
 
-/* Precio del producto */
+/* Precio */
 .modal-precio {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 12px;
 }
 
-/* Descripción del producto */
+/* Descripción */
 .modal-descripcion {
   font-size: 14px;
   color: #666;
-  margin-bottom: 18px;
   line-height: 1.5;
 }
 
@@ -86,16 +81,14 @@
 .cantidad-selector {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 10px;
 }
 
 .cantidad-selector button {
   background: #3f51b5;
   color: white;
   border: none;
-  padding: 8px 14px;
+  padding: 8px 12px;
   cursor: pointer;
   font-size: 22px;
   border-radius: 5px;
@@ -106,7 +99,7 @@
   font-weight: bold;
 }
 
-/* Botón de agregar al carrito */
+/* Botón de agregar */
 .btn-agregar {
   background: #3f51b5;
   color: white;
@@ -117,53 +110,59 @@
   border-radius: 8px;
   margin-top: 20px;
   width: 100%;
-  display: block;
-  text-align: center;
-  box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del botón */
 }
 
-/* Elimina los efectos de hover, foco y clic (active) para evitar el fondo blanco */
-.btn-agregar:hover,
-.btn-agregar:focus,
-.btn-agregar:active {
-  background: #3f51b5; /* Mantén el mismo color de fondo */
-  color: white; /* No cambia el color del texto */
-  box-shadow: none; /* Elimina cualquier sombra */
-  outline: none; /* Elimina el borde que aparece al hacer clic */
+.btn-agregar:hover {
+  background: #2c3e9e;
 }
 
-/* Estilos específicos para dispositivos móviles */
+/* Mercado Pago */
+.mercado-pago-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.mercado-pago-logo {
+  width: 40px;
+  height: auto;
+}
+
+.mercado-pago-info span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilos móviles */
 @media (max-width: 768px) {
-  .btn-agregar {
-    font-size: 14px; /* Reducimos el tamaño de la fuente */
-    padding: 12px; /* Reducimos el padding para que sea más pequeño */
-    margin-top: 20px; /* Mantenemos el margen superior */
-    width: 90%; /* Hacemos que el botón ocupe un 90% del ancho disponible */
-    margin: 20px auto; /* Centrado y espaciado adecuado */
-    border-radius: 5px; /* Redondeamos un poco más el borde */
+  .modal-content {
+    flex-direction: column;
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .modal-body {
+    flex-direction: column;
   }
 
   .modal-imagen {
-    width: 100%; /* Imagen ocupa todo el ancho */
-    object-fit: contain; /* Aseguramos que la imagen no se recorte */
-    max-height: 200px; /* Reducimos la altura de la imagen */
+    width: 100%;
+    max-height: 250px;
   }
 
   .modal-info {
-    font-size: 16px; /* Ajustamos el tamaño del texto */
+    width: 100%;
+    text-align: center;
+    padding: 10px;
   }
 
-  .modal-precio {
-    font-size: 16px; /* Ajuste de tamaño */
+  .cantidad-selector {
+    justify-content: center;
   }
 
-  .modal-descripcion {
-    font-size: 14px;
-  }
-
-  .modal-close {
-    top: 10px;
-    right: 10px;
-    font-size: 25px; /* Reducimos el tamaño del botón cerrar */
+  .mercado-pago-info {
+    justify-content: center;
   }
 }

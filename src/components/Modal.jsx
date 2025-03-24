@@ -56,6 +56,14 @@ const Modal = ({ producto, onClose, onAgregarAlCarrito, onCarritoClick }) => {
             <button className="btn-agregar" onClick={agregarAlCarrito}>
               Agregar al carrito
             </button>
+            <div className="mercado-pago-info">
+              <img 
+                src="./img/mercadopago-logo.png" 
+                alt="Mercado Pago" 
+                className="mercado-pago-logo"
+              />
+              <span>¡Paga de forma segura con Mercado Pago!</span>
+            </div>
           </div>
         </div>
       </div>

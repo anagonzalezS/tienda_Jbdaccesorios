@@ -28,6 +28,7 @@ const Productos = ({ productos = [], onAgregarAlCarrito, abrirModal }) => {
               </div>
               <button 
                 className="boton-agregar" 
+                
                 onClick={() => abrirModal(producto)} // Abre el modal con el producto seleccionado
               >
                 Ver detalles

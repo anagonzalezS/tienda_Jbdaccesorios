@@ -25,7 +25,7 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
   };
 
   const irACompra = () => {
-    // Redirige a la página de compra y pasa los productos y el total como parámetros de URL
+    // Redirige a la página de compra y pasa los productos y el total como parámetros de estado
     navigate("/compra", {
       state: {
         productos: carritoItems,
@@ -33,6 +33,7 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
       },
     });
   };
+  
 
   return (
     <div className={`carrito-modal ${showModal ? "open" : ""}`}>

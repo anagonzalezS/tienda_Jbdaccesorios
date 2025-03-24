@@ -12,10 +12,10 @@ const Compra = () => {
   const [loading, setLoading] = useState(false);
   const [preferenceId, setPreferenceId] = useState(null);
   const [recaptchaValue, setRecaptchaValue] = useState(null);
-  
-  const queryParams = new URLSearchParams(location.search);
-  const productos = JSON.parse(queryParams.get("productos")) || [];
-  const total = Number(queryParams.get("total")) || 0;
+
+  // Accede a los productos y total desde location.state
+  const productos = location.state?.productos || [];
+  const total = location.state?.total || 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);

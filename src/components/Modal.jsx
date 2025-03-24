@@ -13,7 +13,7 @@ const Modal = ({ producto, onClose, onAgregarAlCarrito, onCarritoClick }) => {
 
   const agregarAlCarrito = () => {
     onAgregarAlCarrito({ ...producto, cantidad });
-    onClose();
+    onClose(); // Cierra el modal
     onCarritoClick();
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -38,8 +38,15 @@ const Modal = ({ producto, onClose, onAgregarAlCarrito, onCarritoClick }) => {
     };
   }, [producto]);
 
+  // Aquí agregamos una función para cerrar el modal si se hace clic fuera del contenido
+  const handleOverlayClick = (e) => {
+    if (e.target.classList.contains("modal-overlay")) {
+      onClose(); // Cierra el modal si se hace clic en el fondo oscuro
+    }
+  };
+
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="modal-content">
         <button className="modal-close" onClick={onClose}>×</button>
         <div className="modal-body">

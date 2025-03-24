@@ -1,3 +1,4 @@
+/* 🔹 Estilos generales del modal */
 .carrito-modal {
   position: fixed;
   top: 0;
@@ -15,39 +16,11 @@
   padding: 20px;
 }
 
-@media (max-width: 480px) {
-  .carrito-modal {
-    width: 100%;
-    height: 100vh;
-    padding: 15px;
-  }
-
-  .product-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .carrito-product-image {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-  }
-
-  .producto-precio {
-    font-size: 16px;
-  }
-
-  .cantidad-selector {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-}
-
 .carrito-modal.open {
   transform: translateX(0);
 }
 
+/* 🔹 Encabezado del carrito */
 .carrito-header {
   display: flex;
   justify-content: space-between;
@@ -69,14 +42,18 @@
   font-size: 22px;
 }
 
+/* 🔹 Contenedor de los productos */
 .carrito-body {
   flex-grow: 1;
   overflow-y: auto;
+  padding-right: 10px;
 }
 
+/* 🔹 Producto individual */
 .product-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 15px;
 }
 
@@ -94,11 +71,15 @@
   gap: 5px;
 }
 
+.cantidad-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .cantidad-selector button {
   padding: 5px 10px;
-  margin: 0 5px;
   cursor: pointer;
-  color: black;
   border: 1px solid black;
   background: none;
 }
@@ -109,6 +90,7 @@
   cursor: not-allowed;
 }
 
+/* 🔹 Botón de eliminar */
 .btn-eliminar {
   background: none;
   border: none;
@@ -117,6 +99,7 @@
   cursor: pointer;
 }
 
+/* 🔹 Pie del carrito */
 .carrito-footer {
   position: sticky;
   bottom: 0;
@@ -134,22 +117,41 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: none;
 }
 
-.checkout-btn:hover {
-  background: black;
-}
+/* 🔹 Ajustes para móviles */
+@media (max-width: 768px) {
+  .carrito-modal {
+    width: 100%;
+    height: 100vh;
+    right: 0;
+    padding: 20px;
+  }
 
-.producto-nombre {
-  font-size: 16px;
-  font-weight: bold;
-  color: #555;
-}
+  .product-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
 
-.producto-precio {
-  font-size: 14px;
-  color: #333;
-  margin-left: 5px;
-  font-weight: bold;
+  .carrito-product-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cantidad-selector {
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .checkout-btn {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .close-btn {
+    font-size: 24px;
+    padding: 10px;
+  }
 }

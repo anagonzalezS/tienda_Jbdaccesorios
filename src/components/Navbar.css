@@ -33,22 +33,12 @@
   }
 }
 
-/* 🔹 Espaciado entre elementos dentro del banner */
-.info-banner span {
-  margin: 0 10px;
-}
-
-/* 🔹 Icono de envío */
-.info-icon {
-  font-size: 18px;
-  margin-right: 8px;
-}
-
-/* 🔹 Logo de Mercado Pago */
-.mercado-pago-logo {
-  width: 40px;
-  height: auto;
-  margin-left: 8px;
+/* 🔹 Estilos del logo en la barra de navegación */
+.navbar-brand img {
+  height: 60px;  /* Altura original */
+  width: auto;   /* Mantiene la proporción */
+  max-height: 60px;
+  object-fit: contain;
 }
 
 /* 🔹 BARRA DE NAVEGACIÓN */
@@ -62,13 +52,15 @@
   padding: 10px 0;
   border-bottom: 2px solid #ffffff;
 }
+
 /* 🔹 Ícono de carrito */
 .carrito-icono {
-  position: relative;
+  position: relative; /* Necesario para posicionar el Badge */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff !important; /* Asegura que el ícono sea blanco */
+  color: #fff !important;
+  cursor: pointer;
 }
 
 /* 🔹 Estilo del contador de productos en el carrito */
@@ -82,79 +74,9 @@
   font-weight: bold;
   padding: 4px 8px;
   border-radius: 50%;
-  z-index: 100;
-}
-/* 🔹 BANNER DE INFORMACIÓN */
-.info-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: red; /* 🔥 Fondo rojo */
-  color: white; /* Texto blanco */
-  text-align: center;
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  border-bottom: 2px solid white;
-  overflow: hidden;
-  height: 40px;
-}
-
-/* 🔹 ANIMACIÓN DE MARQUEE */
-.marquee {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marqueeAnimation 15s linear infinite;
-}
-
-@keyframes marqueeAnimation {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-/* 🔹 Icono de carrito */
-.carrito-icono {
-  position: relative; /* Necesario para posicionar el Badge */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff !important;
-  cursor: pointer;
-}
-
-/* 🔹 Estilo del Badge (contador de productos en el carrito) */
-.badge-carrito {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 50%;
   z-index: 9999; /* Asegura que el Badge esté encima del ícono */
 }
 
-/* 🔹 BARRA DE NAVEGACIÓN */
-.navbar {
-  position: fixed;
-  top: 40px; /* Justo debajo del info-banner */
-  left: 0;
-  width: 100%;
-  z-index: 2000;
-  background-color: #000 !important; /* Fondo negro para la navbar */
-  padding: 10px 0;
-  border-bottom: 2px solid #ffffff;
-}
-
 /* 🔹 Enlaces de navegación */
 .navbar-nav .nav-link {
   font-size: 16px;
@@ -165,12 +87,6 @@
 
 .navbar-nav .nav-link:hover {
   color: #ffffff !important;
-}
-
-/* 🔹 Ajustes del logo */
-.navbar-brand img {
-  height: 60px;
-  width: auto;
 }
 
 /* 🔹 Ajustes responsivos */
@@ -185,89 +101,32 @@
     padding: 8px 0;
   }
 
+  /* 🔹 Mostrar íconos de navegación en móviles */
   .navbar-nav {
-    display: none; /* Ocultar los enlaces de navegación */
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
   }
 
-  .carrito-icono {
-    display: block !important;
-    margin-left: auto;
+  .navbar-nav .nav-link {
+    padding: 10px;
   }
 
-  .badge-carrito {
-    top: -8px;
-    right: -8px;
-  }
-}
-/* 🔹 Estilo del Badge (contador de productos en el carrito) */
-.badge-carrito {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 50%;
-  z-index: 99999; /* Asegura que el Badge esté encima del ícono */
-  display: inline-flex; /* Asegura que el Badge tenga un tamaño adecuado */
-}
-
-
-/* 🔹 Enlaces de navegación */
-.navbar-nav .nav-link {
-  font-size: 16px;
-  color: #ffffff !important;
-  font-weight: bold;
-  padding: 10px 15px;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #ffffff !important;
-}
-
-/* 🔹 Ajustes del logo */
-.navbar-brand img {
-  height: 60px;
-  width: auto;
-}
-
-/* 🔹 Ajustes responsivos */
-@media (max-width: 768px) {
-  .info-banner {
-    font-size: 12px;
-    padding: 6px 0;
-  }
-
-  .navbar {
-    top: 35px; /* Ajuste en móviles */
-    padding: 8px 0;
-  }
-
-  /* 🔹 Mostrar solo el ícono del carrito en móviles */
-  .navbar-nav {
-    display: none; /* Ocultar los enlaces de navegación */
-  }
-
-  .carrito-icono {
-    display: block !important;
-    margin-left: auto;
+  /* 🔹 Ajustes del logo en móviles */
+  .navbar-brand img {
+    height: 50px;
+    max-height: 50px;
   }
 
   /* 🔹 Asegúrate que el ícono del carrito no se sobreponga */
   .badge-carrito {
-    top: -8px;
-    right: -8px;
+    top: -5px;
+    right: -10px;
+    font-size: 12px;
+    padding: 5px 7px;
   }
-}
-
-/* 🔹 Ajuste del logo en la barra de navegación */
-.navbar-logo img {
-  width: 120px;
-  height: auto;
-  max-height: 60px;
-  object-fit: contain;
 }
 
 /* 🔹 Texto del banner en mayúsculas */
@@ -279,20 +138,11 @@
 .carrito-icono {
   color: #fff !important; /* Asegura que el ícono sea blanco */
 }
-.carrito-icono {
-  position: relative;
-  cursor: pointer;
-  color: white;
-  margin-right: 15px;
-}
 
-.badge-carrito {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  font-size: 12px;
-  padding: 5px 7px;
-  background-color: red;
-  border-radius: 50%;
-  color: white;
+/* 🔹 Ajustes del logo en la barra de navegación */
+.navbar-logo img {
+  width: 120px;
+  height: auto;
+  max-height: 60px;
+  object-fit: contain;
 }

@@ -7,7 +7,6 @@ const Ubicacion = () => {
     <Container id="ubicacion" className="ubicacion-container my-5">
       <Row>
         <Col md={6} className="order-md-first"> {/* La columna del título será la primera en pantallas pequeñas */}
-          <h3>Ubicación</h3>
           <p>
             Si deseas retirar tu compra, por favor contáctanos con anticipación para coordinar tu llegada. 
             Nos encontramos en el <strong>Barrio de Once</strong> entre la altura:

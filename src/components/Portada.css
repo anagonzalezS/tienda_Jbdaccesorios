@@ -67,12 +67,15 @@ button:hover {
 }
 
 /* 🎯 Ajustes para móviles */
+/* 🎯 Ajustes para móviles */
 @media (max-width: 767px) {
   .hero {
     justify-content: center;
     padding-left: 0;
     text-align: center;
     padding-top: 80px;
+    height: auto;
+    min-height: 90vh;
   }
 
   .main-content {
@@ -80,22 +83,27 @@ button:hover {
     text-align: center;
   }
 
-  button {
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .transparent-button {
     font-size: 1rem;
     padding: 10px 20px;
+    width: 80%;
+    text-transform: uppercase;
+
   }
 }
-/* Portada.css */
-.orange-text {
-  font: normal normal normal 78px/1.4em 'Anton', sans-serif;
+/* 🔹 Quitar el borde azul en los botones y cambiarlo a blanco */
+button:focus,
+.navbar-toggler:focus,
+.nav-link:focus {
+  outline: none !important;
+  box-shadow: 0 0 5px white !important; /* Agrega un brillo blanco */
+  border-color: white !important; /* Cambia el borde a blanco */
 }
-/* Estilo para el botón */
-.transparent-button {
-  background-color: transparent; /* Fondo transparente */
-  border: 2px solid white; /* Borde blanco */
-  color: white; /* Texto blanco */
-  transition: background-color 0.3s, color 0.3s; /* Transición suave para el color */
-}
+
 
 .transparent-button:hover {
   background-color: white; /* Fondo blanco cuando el mouse pasa */

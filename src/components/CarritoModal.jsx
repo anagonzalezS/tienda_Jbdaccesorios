@@ -1,10 +1,11 @@
 import React from "react";
 import { FaTimes, FaTrash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom";
 import "./CarritoModal.css";
 
 const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
-  const navigate = useNavigate(); // Inicializar useNavigate
+  const navigate = useNavigate();
+
   const total = carritoItems.reduce((acc, item) => {
     const precio = parseFloat(item.precio) || 0;
     const cantidad = parseInt(item.cantidad) || 1;
@@ -25,16 +26,15 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
   };
 
   const irACompra = () => {
-    // Redirige a la página de compra y pasa los productos y el total como parámetros de estado
     navigate("/compra", {
       state: {
         productos: carritoItems,
         total: total,
       },
     });
+    handleClose(); // Cierra el modal después de navegar
   };
   
-
   return (
     <div className={`carrito-modal ${showModal ? "open" : ""}`}>
       <div className="carrito-header">
@@ -54,7 +54,10 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
               <div className="product-details">
                 <span className="producto-nombre">{producto.nombre}</span>
                 <span className="producto-precio">
-                  {" $"}{new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2 }).format((parseFloat(producto.precio) || 0) * (producto.cantidad || 1))}
+                  {" $"}
+                  {new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2 }).format(
+                    (parseFloat(producto.precio) || 0) * (producto.cantidad || 1)
+                  )}
                 </span>
                 <div className="cantidad-selector">
                   <button
@@ -84,7 +87,7 @@ const CarritoModal = ({ showModal, handleClose, carritoItems, setCarrito }) => {
             {new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2 }).format(total)}
           </strong>
         </p>
-        <button className="checkout-btn" onClick={irACompra}>Pagar total</button> {/* Redirige al formulario de compra */}
+        <button className="checkout-btn" onClick={irACompra}>Pagar total</button>
       </div>
     </div>
   );

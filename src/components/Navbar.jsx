@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, Badge } from "react-bootstrap";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaStore, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import CarritoModal from "./CarritoModal";
 import { useNavigate, useLocation } from "react-router-dom";
 import Banner from "./Banner";
 import "./Navbar.css";
 
-const NavBar = ({ carrito, setCarrito, cantidadTotal }) => { 
+const NavBar = ({ carrito, setCarrito, cantidadTotal }) => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,37 +16,38 @@ const NavBar = ({ carrito, setCarrito, cantidadTotal }) => {
 
   const isCompraPage = location.pathname === "/compra";
 
-  // Debug: Verificar si cantidadTotal está llegando correctamente
-  console.log("Cantidad total recibida en NavBar:", cantidadTotal);
-
   return (
     <div>
       <Banner />
 
-      <Navbar bg="dark" variant="dark" expand="md" className="navbar">
-        <Container>
+      <Navbar bg="dark" variant="dark" className="navbar">
+        <Container className="d-flex justify-content-between">
+          {/* 🔹 LOGO */}
           <Navbar.Brand onClick={() => navigate("/")}>
             <img src="/img/navbar2.png" alt="Logo" className="navbar-logo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              {!isCompraPage && (
-                <>
-                  <Nav.Link onClick={() => navigate("/productos")}>Tienda</Nav.Link>
-                  <Nav.Link onClick={() => navigate("/ubicacion")}>Ubicación</Nav.Link>
-                  <Nav.Link onClick={() => navigate("/contacto")}>Contacto</Nav.Link>
-                </>
-              )}
-            </Nav>
-          </Navbar.Collapse>
 
-          {/* Ícono del carrito con badge */}
+          {/* 🔹 MENÚ SIEMPRE VISIBLE */}
+          <Nav className="ms-auto d-flex flex-row align-items-center">
+            {!isCompraPage && (
+              <>
+                <Nav.Link onClick={() => navigate("/Productos")} className="icon-link">
+                  <FaStore size={24} />
+                </Nav.Link>
+                <Nav.Link onClick={() => navigate("/Ubicacion")} className="icon-link">
+                  <FaMapMarkerAlt size={24} />
+                </Nav.Link>
+                <Nav.Link onClick={() => navigate("/Contacto")} className="icon-link">
+                  <FaPhoneAlt size={24} />
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+
+          {/* 🔹 Ícono del carrito */}
           {!isCompraPage && (
             <Nav.Item className="carrito-icono" onClick={abrirCarrito}>
               <FaShoppingCart size={24} className="icono-carrito" />
-              
-              {/* Mostrar el badge solo si cantidadTotal es mayor que 0 */}
               {cantidadTotal > 0 && (
                 <Badge pill bg="danger" className="badge-carrito">
                   {cantidadTotal}
